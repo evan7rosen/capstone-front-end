@@ -8,6 +8,8 @@ import { fetchAllUsers } from "./store/users/actions";
 import { fetchAllVideos } from "./store/videos/actions";
 
 import Homepage from "./components/Homepage";
+import Video from "./components/video/VideoPortal";
+import Admin from "./components/admin/AdminPortal";
 
 const App = props => {
   useEffect(() => {
@@ -19,6 +21,8 @@ const App = props => {
     <Router>
       <Switch>
         <Route exact path="/" component={Homepage} />
+        <Route path="/videos" component={Video} />
+        <Route path="/admin" component={Admin} />
       </Switch>
     </Router>
   );
