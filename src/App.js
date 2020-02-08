@@ -1,25 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "typeface-roboto";
 
-import videosApi from "./api/videos";
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-const App = () => {
-  const [videos, setVideos] = useState([]);
-  const [selectedVideo, setSelectedVideo] = useState(null);
+import { fetchAllUsers } from "./store/users/actions";
+import { fetchAllVideos } from "./store/videos/actions";
 
+import Homepage from "./components/Homepage";
+
+const App = props => {
   useEffect(() => {
-    videosApi
-      .get()
-      .then(res => setVideos(res))
-      .catch(err => console.log(err));
-  }, [videos]);
+    props.fetchAllUsers();
+    props.fetchAllVideos();
+  }, []);
 
   return (
-    <div>
-      <p>Ligma Balsz</p>
-      {console.log(videos)}
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+      </Switch>
+    </Router>
   );
 };
 
-export default App;
+export default connect(null, {
+  fetchAllUsers,
+  fetchAllVideos
+})(App);
