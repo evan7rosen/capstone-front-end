@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 const Homepage = props => {
   return (
     <div>
-      Hello Fuckers
+      Homepage
       {console.log(props)}
     </div>
   );

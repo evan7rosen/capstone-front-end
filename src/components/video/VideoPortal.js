@@ -1,33 +1,37 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
+import { connect } from "react-redux";
 
-import { SearchBar, VideoList, VideoDetail } from "./components/video";
+import { SearchBar, VideoList, VideoDetail } from "./";
 
-export default () => {
+import { selectVideo } from "../../store/videos/actions";
+
+const VideoPortal = props => {
   return (
     <Grid style={{ justifyContent: "center" }} container spacing={10}>
       <Grid item xs={11}>
         <Grid container spacing={10}>
           <Grid item xs={12}>
-            <SearchBar onSubmit={handleSubmit} />
+            <SearchBar />
           </Grid>
           <Grid item xs={8}>
-            <VideoDetail video={selectedVideo} />
+            <VideoDetail video={props.selectedVideo} />
           </Grid>
           <Grid item xs={4}>
-            <VideoList videos={videos} onVideoSelect={setSelectedVideo} />
+            <VideoList videos={props.videos.all} onVideoSelect={selectVideo} />
           </Grid>
         </Grid>
       </Grid>
     </Grid>
   );
-
-  async function handleSubmit() {
-    const {
-      data: { items: videos }
-    } = await youtube.get();
-
-    setVideos(videos);
-    setSelectedVideo(videos[0]);
-  }
 };
+
+const mapStateToProps = state => {
+  console.log("STATE", state);
+  return {
+    users: state.users,
+    videos: state.videos
+  };
+};
+
+export default connect(mapStateToProps)(VideoPortal);
