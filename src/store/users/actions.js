@@ -3,8 +3,6 @@ import axios from "axios";
 import { BASE_URL } from "./constants";
 
 export const fetchAllUsers = () => async dispatch => {
-  console.log("HERE TOO");
-
   dispatch({
     type: types.FETCH_ALL_USERS_PENDING
   });

@@ -76,6 +76,7 @@ export const editVideo = (updatedVideo, id) => async dispatch => {
 };
 
 export const selectVideo = video => dispatch => {
+  console.log("select video", video.id);
   dispatch({
     type: types.SELECT_VIDEO_PENDING
   });

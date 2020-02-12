@@ -1,18 +1,25 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
+import { connect } from "react-redux";
 
 import VideoItem from "./VideoItem";
 
-const VideoList = ({ videos, onVideoSelect }) => {
-  const listOfVideos = videos.map(video => (
-    <VideoItem onVideoSelect={onVideoSelect} key={video.id} video={video} />
+const VideoList = ({ videos }) => {
+  const listOfVideos = videos.all.map(video => (
+    <VideoItem key={video.id} video={video} />
   ));
 
   return (
-    <Grid container spacing={10}>
+    <Grid container spacing={2}>
       {listOfVideos}
     </Grid>
   );
 };
 
-export default VideoList;
+const mapStateToProps = state => {
+  return {
+    videos: state.videos
+  };
+};
+
+export default connect(mapStateToProps)(VideoList);

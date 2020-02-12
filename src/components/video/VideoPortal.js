@@ -5,22 +5,20 @@ import { connect } from "react-redux";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
 
-import { selectVideo } from "../../store/videos/actions";
-
 const VideoPortal = props => {
   return (
     <Grid style={{ justifyContent: "center" }} container spacing={10}>
       <Grid item xs={11}>
-        <Grid container spacing={10}>
+        <Grid container spacing={5}>
           <Grid item>
-            {props.selectedVideo ? (
+            {props.videos.selectedVideo.hasOwnProperty("id") ? (
               <VideoDetail video={props.selectedVideo} />
             ) : (
               ""
             )}
           </Grid>
           <Grid item>
-            <VideoList videos={props.videos.all} onVideoSelect={selectVideo} />
+            <VideoList />
           </Grid>
         </Grid>
       </Grid>
@@ -29,7 +27,6 @@ const VideoPortal = props => {
 };
 
 const mapStateToProps = state => {
-  console.log("STATE", state);
   return {
     users: state.users,
     videos: state.videos
