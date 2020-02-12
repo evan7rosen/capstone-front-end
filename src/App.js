@@ -8,7 +8,8 @@ import { fetchAllUsers } from "./store/users/actions";
 import { fetchAllVideos } from "./store/videos/actions";
 
 import TopNav from "./components/layout/TopNav";
-import Homepage from "./components/Homepage";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 import Video from "./components/video/VideoPortal";
 import Admin from "./components/admin/AdminPortal";
 
@@ -22,7 +23,8 @@ const App = props => {
     <Router>
       <TopNav />
       <Switch>
-        <Route exact path="/" component={Homepage} />
+        <Route exact path="/" component={Login} />
+        <Route path="/register" component={Register} />
         <Route path="/videos" component={Video} />
         <Route path="/admin" component={Admin} />
       </Switch>

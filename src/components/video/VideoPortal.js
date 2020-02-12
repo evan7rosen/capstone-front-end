@@ -2,7 +2,8 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 
-import { SearchBar, VideoList, VideoDetail } from "./";
+import VideoList from "./VideoList";
+import VideoDetail from "./VideoDetail";
 
 import { selectVideo } from "../../store/videos/actions";
 
@@ -11,13 +12,14 @@ const VideoPortal = props => {
     <Grid style={{ justifyContent: "center" }} container spacing={10}>
       <Grid item xs={11}>
         <Grid container spacing={10}>
-          <Grid item xs={12}>
-            <SearchBar />
+          <Grid item>
+            {props.selectedVideo ? (
+              <VideoDetail video={props.selectedVideo} />
+            ) : (
+              ""
+            )}
           </Grid>
-          <Grid item xs={8}>
-            <VideoDetail video={props.selectedVideo} />
-          </Grid>
-          <Grid item xs={4}>
+          <Grid item>
             <VideoList videos={props.videos.all} onVideoSelect={selectVideo} />
           </Grid>
         </Grid>

@@ -3,13 +3,9 @@ import { Grid } from "@material-ui/core";
 
 import VideoItem from "./VideoItem";
 
-export default ({ videos, onVideoSelect }) => {
+const VideoList = ({ videos, onVideoSelect }) => {
   const listOfVideos = videos.map(video => (
-    <VideoItem
-      onVideoSelect={onVideoSelect}
-      key={video.id.videoId}
-      video={video}
-    />
+    <VideoItem onVideoSelect={onVideoSelect} key={video.id} video={video} />
   ));
 
   return (
@@ -18,3 +14,5 @@ export default ({ videos, onVideoSelect }) => {
     </Grid>
   );
 };
+
+export default VideoList;
