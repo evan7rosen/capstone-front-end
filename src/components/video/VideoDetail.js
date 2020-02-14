@@ -1,36 +1,43 @@
 import React from "react";
+import { connect } from "react-redux";
 
-import { Paper, Typography } from "@material-ui/core";
+import { Paper, Typography, Box } from "@material-ui/core";
 
-const VideoDetail = ({ video }) => {
-  if (!video) return <div>Loading...</div>;
+const VideoDetail = props => {
+  if (!props.videos.selectedVideo) return <div>Loading...</div>;
 
-  const videoSrc = `${video.url}`;
+  const videoSrc = `${props.videos.selectedVideo.url}`;
 
   return (
     <React.Fragment>
-      <Paper elevation={6} style={{ height: "70%" }}>
-        <iframe
+      <Box>
+        {/* <iframe
           frameBorder="0"
-          height="100%"
-          width="100%"
           title="Video Player"
           src={videoSrc}
-        />
-      </Paper>
-      <Paper elevation={6} style={{ padding: "15px" }}>
-        <Typography variant="h4">
-          Add Title to Seed Data
-          {/* {video.snippet.title} - {video.snippet.channelTitle} */}
-        </Typography>
-        <Typography variant="subtitle1">
-          Add Date / Description to Seed Data
-          {/* {video.snippet.channelTitle} */}
-        </Typography>
-        {/* <Typography variant="subtitle2">{video.snippet.description}</Typography> */}
-      </Paper>
+          style={{ width: "900px", height: "506px" }}
+        /> */}
+
+        <video controls>
+          <source type="video/mp4" src={videoSrc}></source>
+        </video>
+        <Paper p={2}>
+          <Typography variant="h5">
+            {props.videos.selectedVideo.title}
+          </Typography>
+          <Typography variant="subtitle1">
+            {props.videos.selectedVideo.date}
+          </Typography>
+        </Paper>
+      </Box>
     </React.Fragment>
   );
 };
 
-export default VideoDetail;
+const mapStateToProps = state => {
+  return {
+    videos: state.videos
+  };
+};
+
+export default connect(mapStateToProps)(VideoDetail);

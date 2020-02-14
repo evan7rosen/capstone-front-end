@@ -1,26 +1,27 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import { connect } from "react-redux";
 
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
+// import CardVideoTest from "./CardVideoTest";
 
 const VideoPortal = props => {
   return (
     <Grid style={{ justifyContent: "center" }} container spacing={10}>
-      <Grid item xs={11}>
-        <Grid container spacing={5}>
-          <Grid item>
+      <Grid container xs={11}>
+        <Box my={5}>
+          <Box my={2}>
             {props.videos.selectedVideo.hasOwnProperty("id") ? (
-              <VideoDetail video={props.selectedVideo} />
+              <VideoDetail />
             ) : (
               ""
             )}
-          </Grid>
-          <Grid item>
+          </Box>
+          <Box my={2}>
             <VideoList />
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Grid>
     </Grid>
   );
