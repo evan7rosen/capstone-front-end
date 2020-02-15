@@ -11,7 +11,9 @@ import TopNav from "./components/layout/TopNav";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Video from "./components/video/VideoPortal";
-import Admin from "./components/admin/AdminPortal";
+import Admin from "./components/admin/dashboard/Dashboard";
+import UserAdmin from "./components/admin/userAdmin/UserAdmin";
+import VideoAdmin from "./components/admin/videoAdmin/VideoAdmin";
 
 const App = props => {
   useEffect(() => {
@@ -27,6 +29,8 @@ const App = props => {
         <Route path="/register" component={Register} />
         <Route path="/videos" component={Video} />
         <Route path="/admin" component={Admin} />
+        <Route path="/users-admin" component={UserAdmin} />
+        <Route path="/videos-admin" component={VideoAdmin} />
       </Switch>
     </Router>
   );

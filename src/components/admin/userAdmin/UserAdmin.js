@@ -1,19 +1,24 @@
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
-import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
 import List from "@material-ui/core/List";
-import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
 import React from "react";
-import Chart from "./dashboard/Chart";
-import Deposits from "./dashboard/Deposits";
-import { mainListItems } from "./dashboard/listItems";
-import Orders from "./dashboard/Orders";
+import { connect } from "react-redux";
+import { mainListItems } from "../dashboard/listItems";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
+
+import {
+  addUser,
+  removeUser,
+  editUser,
+  selectUser,
+  fetchAllUsers
+} from "../../../store/users/actions";
 
 function Copyright() {
   return (
@@ -109,9 +114,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function AdminPortal() {
+const UserAdmin = props => {
   const classes = useStyles();
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
@@ -126,26 +130,10 @@ export default function AdminPortal() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
+
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid>
+            RIKI TIKI TAVI Beeeeeeeeotch!!!! User Admin
           </Grid>
           <Box pt={4}>
             <Copyright />
@@ -154,4 +142,18 @@ export default function AdminPortal() {
       </main>
     </div>
   );
-}
+};
+
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  };
+};
+
+export default connect(mapStateToProps, {
+  addUser,
+  removeUser,
+  editUser,
+  selectUser,
+  fetchAllUsers
+})(UserAdmin);
