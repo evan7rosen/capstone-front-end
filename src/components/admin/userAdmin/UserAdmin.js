@@ -119,6 +119,7 @@ const UserAdmin = props => {
 
   return (
     <div className={classes.root}>
+      {console.log("user admin props", props)}
       <CssBaseline />
       <Drawer
         variant="permanent"

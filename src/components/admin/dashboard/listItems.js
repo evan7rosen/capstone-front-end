@@ -18,7 +18,7 @@ export const mainListItems = (
       </ListItem>
     </NavLink>
     <NavLink
-      to="/videos-admin"
+      to="/videos/admin"
       style={{ textDecoration: "none", color: "black" }}
     >
       <ListItem button>
@@ -29,7 +29,7 @@ export const mainListItems = (
       </ListItem>
     </NavLink>
     <NavLink
-      to="/users-admin"
+      to="/users/admin"
       style={{ textDecoration: "none", color: "black" }}
     >
       <ListItem button>

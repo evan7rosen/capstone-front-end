@@ -10,7 +10,10 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+import { NavLink } from "react-router-dom";
 import { mainListItems } from "../dashboard/listItems";
+import VideoList from "./VideoList";
 import {
   addVideo,
   removeVideo,
@@ -118,6 +121,7 @@ const VideoAdmin = props => {
 
   return (
     <div className={classes.root}>
+      {console.log("video admin props", props)}
       <CssBaseline />
       <Drawer
         variant="permanent"
@@ -131,8 +135,22 @@ const VideoAdmin = props => {
         <div className={classes.appBarSpacer} />
 
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            WUBBA LUBBA DUB DUB!!!! Video Admin
+          <Grid style={{ justifyContent: "center" }} container spacing={10}>
+            <Grid container xs={11}>
+              <Box>
+                <NavLink
+                  to="/videoform"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <Grid container spacing={2} p={5}>
+                    <Paper>Add Video</Paper>
+                  </Grid>
+                </NavLink>
+              </Box>
+              <Box my={5}>
+                <VideoList />
+              </Box>
+            </Grid>
           </Grid>
           <Box pt={4}>
             <Copyright />

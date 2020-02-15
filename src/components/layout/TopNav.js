@@ -69,7 +69,6 @@ const TopNav = props => {
 
   return (
     <div className={classes.root}>
-      {console.log("top nav location", location)}
       <AppBar position="static" color="transparent">
         <Toolbar>
           <NavLink to="/" style={{ textDecoration: "none", color: "black" }}>

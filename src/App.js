@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "typeface-roboto";
 
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -14,11 +13,14 @@ import Video from "./components/video/VideoPortal";
 import Admin from "./components/admin/dashboard/Dashboard";
 import UserAdmin from "./components/admin/userAdmin/UserAdmin";
 import VideoAdmin from "./components/admin/videoAdmin/VideoAdmin";
+import UserForm from "./components/admin/userForm/UserForm";
+import VideoForm from "./components/admin/videoForm/VideoForm";
 
 const App = props => {
   useEffect(() => {
     props.fetchAllUsers();
     props.fetchAllVideos();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -27,10 +29,12 @@ const App = props => {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/videos" component={Video} />
-        <Route path="/admin" component={Admin} />
-        <Route path="/users-admin" component={UserAdmin} />
-        <Route path="/videos-admin" component={VideoAdmin} />
+        <Route exact path="/videos" component={Video} />
+        <Route exact path="/admin" component={Admin} />
+        <Route path="/users/admin" component={UserAdmin} />
+        <Route path="/videos/admin" component={VideoAdmin} />
+        <Route path="/users/form" component={UserForm} />
+        <Route path="/videos/form" component={VideoForm} />
       </Switch>
     </Router>
   );

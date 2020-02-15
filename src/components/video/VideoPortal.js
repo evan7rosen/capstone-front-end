@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
-// import CardVideoTest from "./CardVideoTest";
 
 const VideoPortal = props => {
   return (
