@@ -74,29 +74,29 @@ const TopNav = props => {
       {console.log("top nav location", location)}
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
           <NavLink to="/" style={{ textDecoration: "none", color: "black" }}>
             <img
               src={Logo}
               alt="Double R Video Logo"
-              style={{ height: "50px", padding: "5px" }}
+              style={{
+                height: "50px",
+                padding: "5px",
+                marginLeft: "10px",
+                marginRight: "10px"
+              }}
             />
           </NavLink>
           <NavLink
             to="/videos"
-            style={{ textDecoration: "none", color: "black" }}
+            style={{ textDecoration: "none", color: "black", padding: "5px" }}
           >
             <Button color="inherit">Videos</Button>
           </NavLink>
           {location.pathname === "/videos" ? (
-            <div className={classes.search} style={{ width: "50%" }}>
+            <div
+              className={classes.search}
+              style={{ width: "50%", padding: "5px" }}
+            >
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
@@ -114,7 +114,7 @@ const TopNav = props => {
           )}
           <NavLink
             to="/admin"
-            style={{ textDecoration: "none", color: "black" }}
+            style={{ textDecoration: "none", color: "black", padding: "5px" }}
           >
             <Button color="inherit">Admin Portal</Button>
           </NavLink>
