@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
@@ -12,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import FormPage from "./FormPage";
 import Review from "./Review";
 import SideNav from "../reusable/SideNav";
+import { addVideo, editVideo } from "../../../store/videos/actions";
 
 function Copyright() {
   return (
@@ -75,9 +77,9 @@ const useStyles = makeStyles(theme => ({
 
 const steps = ["Edit information", "Review your video"];
 
-export default function VideoForm() {
+const VideoForm = props => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const [title, setTitle] = useState(0);
   const [url, setUrl] = useState(0);
 
@@ -95,12 +97,24 @@ export default function VideoForm() {
     }
   }
 
-  const handleNext = postBody => {
+  const handleNext = () => {
+    if (activeStep === steps.length - 1) {
+      handleSubmit();
+    }
     setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+  };
+
+  const handleSubmit = () => {
+    console.log("submit");
+    let newVideo = {
+      title: title,
+      url: url
+    };
+    props.addVideo(newVideo);
   };
 
   return (
@@ -161,4 +175,9 @@ export default function VideoForm() {
       </main>
     </React.Fragment>
   );
-}
+};
+
+export default connect(null, {
+  addVideo,
+  editVideo
+})(VideoForm);
