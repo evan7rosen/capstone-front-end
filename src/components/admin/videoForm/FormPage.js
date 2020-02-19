@@ -16,6 +16,7 @@ const FormPage = ({ setTitle, setUrl }) => {
             id="title"
             name="title"
             label="Title"
+            fullWidth
             onChange={e => setTitle(e.target.value)}
           />
         </Grid>

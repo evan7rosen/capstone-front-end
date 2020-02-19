@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
@@ -120,59 +120,60 @@ const VideoForm = props => {
   return (
     <React.Fragment>
       <CssBaseline />
-      <SideNav />
-      <main className={classes.layout}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Paper className={classes.paper}>
-            <Typography component="h1" variant="h4" align="center">
-              Video Upload Form
-            </Typography>
-            <Stepper activeStep={activeStep} className={classes.stepper}>
-              {steps.map(label => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-            <React.Fragment>
-              {activeStep === steps.length ? (
-                <React.Fragment>
-                  <Typography variant="h5" gutterBottom>
-                    Your video has been submitted.
-                  </Typography>
-                  <Typography variant="subtitle1">
-                    Please go to the users screen to give customers access to
-                    this video.
-                  </Typography>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  {getStepContent(activeStep)}
-                  <div className={classes.buttons}>
-                    {activeStep !== 0 && (
-                      <Button onClick={handleBack} className={classes.button}>
-                        Back
+      <Grid container xs={12}>
+        <SideNav />
+        <main className={classes.layout}>
+          <Grid style={{ justifyContent: "center" }} container spacing={2}>
+            <Paper className={classes.paper}>
+              <Typography component="h1" variant="h4" align="center">
+                Video Upload Form
+              </Typography>
+              <Stepper activeStep={activeStep} className={classes.stepper}>
+                {steps.map(label => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+              <React.Fragment>
+                {activeStep === steps.length ? (
+                  <React.Fragment>
+                    <Typography variant="h5" gutterBottom>
+                      Your video has been submitted.
+                    </Typography>
+                    <Typography variant="subtitle1">
+                      Please go to the users screen to give customers access to
+                      this video.
+                    </Typography>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    {getStepContent(activeStep)}
+                    <div className={classes.buttons}>
+                      {activeStep !== 0 && (
+                        <Button onClick={handleBack} className={classes.button}>
+                          Back
+                        </Button>
+                      )}
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleNext}
+                        className={classes.button}
+                      >
+                        {activeStep === steps.length - 1
+                          ? "Submit Video"
+                          : "Next"}
                       </Button>
-                    )}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleNext}
-                      className={classes.button}
-                    >
-                      {activeStep === steps.length - 1
-                        ? "Submit Video"
-                        : "Next"}
-                    </Button>
-                  </div>
-                </React.Fragment>
-              )}
-            </React.Fragment>
-          </Paper>
-          <Copyright />
-        </Container>
-      </main>
+                    </div>
+                  </React.Fragment>
+                )}
+              </React.Fragment>
+            </Paper>
+            <Copyright />
+          </Grid>
+        </main>
+      </Grid>
     </React.Fragment>
   );
 };
