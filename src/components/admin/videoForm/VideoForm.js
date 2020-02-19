@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
@@ -75,22 +75,27 @@ const useStyles = makeStyles(theme => ({
 
 const steps = ["Edit information", "Review your video"];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <FormPage />;
-    case 1:
-      return <Review />;
-    default:
-      throw new Error("Unknown step");
-  }
-}
-
 export default function VideoForm() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [title, setTitle] = useState(0);
+  const [url, setUrl] = useState(0);
 
-  const handleNext = () => {
+  console.log("title", title);
+  console.log("url", url);
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <FormPage setTitle={setTitle} setUrl={setUrl} />;
+      case 1:
+        return <Review />;
+      default:
+        throw new Error("Unknown step");
+    }
+  }
+
+  const handleNext = postBody => {
     setActiveStep(activeStep + 1);
   };
 
