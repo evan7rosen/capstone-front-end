@@ -1,9 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
@@ -12,8 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import { NavLink } from "react-router-dom";
-import { mainListItems } from "../dashboard/listItems";
 import VideoList from "./VideoList";
+import SideNav from "../reusable/SideNav";
 import {
   addVideo,
   removeVideo,
@@ -121,25 +118,17 @@ const VideoAdmin = props => {
 
   return (
     <div className={classes.root}>
-      {console.log("video admin props", props)}
       <CssBaseline />
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper)
-        }}
-      >
-        <List>{mainListItems}</List>
-      </Drawer>
+      <SideNav />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
 
         <Container maxWidth="lg" className={classes.container}>
           <Grid style={{ justifyContent: "center" }} container spacing={10}>
-            <Grid container xs={11}>
+            <Grid item xs={11}>
               <Box>
                 <NavLink
-                  to="/videoform"
+                  to="/videos/form"
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   <Grid container spacing={2} p={5}>

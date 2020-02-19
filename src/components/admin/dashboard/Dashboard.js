@@ -1,10 +1,7 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import React from "react";
-import { mainListItems } from "./listItems";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -13,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
+import SideNav from "../reusable/SideNav";
 import Link from "@material-ui/core/Link";
 
 function Copyright() {
@@ -116,14 +114,7 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper)
-        }}
-      >
-        <List>{mainListItems}</List>
-      </Drawer>
+      <SideNav />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
 

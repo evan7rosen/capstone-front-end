@@ -69,7 +69,7 @@ const TopNav = props => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="transparent">
+      <AppBar position="static" color="inherit">
         <Toolbar>
           <NavLink to="/" style={{ textDecoration: "none", color: "black" }}>
             <img

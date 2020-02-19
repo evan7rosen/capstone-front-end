@@ -8,7 +8,6 @@ export const fetchAllUsers = () => async dispatch => {
   });
   try {
     let response = await axios.get(BASE_URL);
-    console.log("RES", response.data);
     dispatch({
       type: types.FETCH_ALL_USERS_SUCCESS,
       payload: response.data

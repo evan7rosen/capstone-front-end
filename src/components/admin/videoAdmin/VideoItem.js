@@ -23,14 +23,7 @@ const VideoItem = ({ video, editVideo, removeVideo }) => {
   }
 
   return (
-    <Grid
-      item
-      xs={12}
-      direction="row"
-      justify="space-between"
-      alignItems="center"
-    >
-      {console.log("video", video)}
+    <Grid item xs={12}>
       <Paper
         style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
       >
