@@ -83,15 +83,12 @@ const VideoForm = props => {
   const [title, setTitle] = useState(0);
   const [url, setUrl] = useState(0);
 
-  console.log("title", title);
-  console.log("url", url);
-
   function getStepContent(step) {
     switch (step) {
       case 0:
         return <FormPage setTitle={setTitle} setUrl={setUrl} />;
       case 1:
-        return <Review />;
+        return <Review title={title} url={url} />;
       default:
         throw new Error("Unknown step");
     }
