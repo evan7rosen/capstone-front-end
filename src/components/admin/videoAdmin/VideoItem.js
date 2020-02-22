@@ -7,14 +7,19 @@ import {
   Button,
   ButtonGroup
 } from "@material-ui/core";
+import { NavLink } from "react-router-dom";
 
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 import VidImg from "./video.jpg";
-import { editVideo, removeVideo } from "../../../store/videos/actions";
+import {
+  editVideo,
+  removeVideo,
+  selectVideo
+} from "../../../store/videos/actions";
 
-const VideoItem = ({ video, editVideo, removeVideo }) => {
+const VideoItem = ({ video, selectVideo, removeVideo }) => {
   function deleteButtonClick(video) {
     var r = window.confirm(`Are you sure you want to delete ${video.title}?`);
     if (r === true) {
@@ -42,9 +47,11 @@ const VideoItem = ({ video, editVideo, removeVideo }) => {
           aria-label="text primary button group"
           style={{ float: "right" }}
         >
-          <Button>
-            <EditIcon />
-          </Button>
+          <NavLink to="/videos/form/edit">
+            <Button onClick={() => selectVideo(video)}>
+              <EditIcon />
+            </Button>
+          </NavLink>
           <Button onClick={() => deleteButtonClick(video)}>
             <DeleteIcon />
           </Button>
@@ -56,5 +63,6 @@ const VideoItem = ({ video, editVideo, removeVideo }) => {
 
 export default connect(null, {
   removeVideo,
-  editVideo
+  editVideo,
+  selectVideo
 })(VideoItem);

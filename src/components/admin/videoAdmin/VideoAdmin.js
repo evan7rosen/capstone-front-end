@@ -7,7 +7,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
 import VideoList from "./VideoList";
 import SideNav from "../reusable/SideNav";
@@ -38,6 +38,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
+  button: {
+    margin: theme.spacing(1)
+  },
   toolbar: {
     paddingRight: 24 // keep right padding when drawer closed
   },
@@ -48,21 +51,21 @@ const useStyles = makeStyles(theme => ({
     padding: "0 8px",
     ...theme.mixins.toolbar
   },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
+  // appBar: {
+  //   zIndex: theme.zIndex.drawer + 1,
+  //   transition: theme.transitions.create(["width", "margin"], {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.leavingScreen
+  //   })
+  // },
+  // appBarShift: {
+  //   marginLeft: drawerWidth,
+  //   width: `calc(100% - ${drawerWidth}px)`,
+  //   transition: theme.transitions.create(["width", "margin"], {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.enteringScreen
+  //   })
+  // },
   menuButton: {
     marginRight: 36
   },
@@ -116,6 +119,12 @@ const useStyles = makeStyles(theme => ({
 const VideoAdmin = props => {
   const classes = useStyles();
 
+  const clearSelectedVideo = () => {
+    console.log("click");
+    props.selectVideo({});
+    console.log(props.videos.selectedVideo);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -128,12 +137,16 @@ const VideoAdmin = props => {
             <Grid item xs={11}>
               <Box>
                 <NavLink
-                  to="/videos/form"
+                  to="/videos/form/new"
                   style={{ textDecoration: "none", color: "black" }}
                 >
-                  <Grid container spacing={2} p={5}>
-                    <Paper>Add Video</Paper>
-                  </Grid>
+                  <Button
+                    variant="contained"
+                    className={classes.button}
+                    onClick={clearSelectedVideo}
+                  >
+                    Default
+                  </Button>
                 </NavLink>
               </Box>
               <Box my={5}>
