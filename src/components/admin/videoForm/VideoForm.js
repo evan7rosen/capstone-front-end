@@ -124,8 +124,8 @@ const VideoForm = props => {
       case 1:
         return (
           <Review
-            title={props.selectedvideo.title}
-            url={props.selectedvideo.url}
+            title={props.videos.selectedVideo.title}
+            url={props.videos.selectedVideo.url}
           />
         );
       default:
@@ -147,8 +147,8 @@ const VideoForm = props => {
   const handleSubmit = () => {
     console.log("submit function", form.function);
     let newVideo = {
-      title: props.videos.selectedvideo.title,
-      url: props.videos.selectedvideo.url
+      title: props.videos.selectedVideo.title,
+      url: props.videos.selectedVideo.url
     };
 
     form.function(newVideo);

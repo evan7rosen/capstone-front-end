@@ -5,12 +5,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import React from "react";
 import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
+import { NavLink } from "react-router-dom";
 import { mainListItems } from "../dashboard/listItems";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import UserList from "./UserList";
 
 import {
   addUser,
@@ -134,7 +137,23 @@ const UserAdmin = props => {
 
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            RIKI TIKI TAVI Beeeeeeeeotch!!!! User Admin
+            <Box>
+              <NavLink
+                to="/videos/form/new"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <Button
+                  variant="contained"
+                  className={classes.button}
+                  onClick={console.log("click")}
+                >
+                  Add New User
+                </Button>
+              </NavLink>
+            </Box>
+            <Box my={5}>
+              <UserList />
+            </Box>
           </Grid>
           <Box pt={4}>
             <Copyright />

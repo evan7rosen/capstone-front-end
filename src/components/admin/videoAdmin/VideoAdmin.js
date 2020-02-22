@@ -145,7 +145,7 @@ const VideoAdmin = props => {
                     className={classes.button}
                     onClick={clearSelectedVideo}
                   >
-                    Default
+                    Add New Video
                   </Button>
                 </NavLink>
               </Box>
