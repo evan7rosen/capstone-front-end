@@ -13,7 +13,12 @@ import Typography from "@material-ui/core/Typography";
 import FormPage from "./FormPage";
 import Review from "./Review";
 import SideNav from "../reusable/SideNav";
-import { addVideo, editVideo } from "../../../store/videos/actions";
+import {
+  addVideo,
+  editVideo,
+  selectVideo
+} from "../../../store/videos/actions";
+import { useLocation } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -79,16 +84,50 @@ const steps = ["Edit information", "Review your video"];
 
 const VideoForm = props => {
   const classes = useStyles();
+  const location = useLocation();
   const [activeStep, setActiveStep] = useState(0);
-  const [title, setTitle] = useState(0);
-  const [url, setUrl] = useState(0);
+
+  const setTitle = title => {
+    props.selectVideo({
+      title: title,
+      url: props.videos.selectedVideo.url
+    });
+  };
+
+  const setUrl = url => {
+    props.selectVideo({
+      title: props.videos.selectedVideo.title,
+      url: url
+    });
+  };
+
+  let form = {};
+
+  if (location.pathname === "/videos/form/edit") {
+    form = {
+      title: "Video Edit Form",
+      message: "Video edited successfully",
+      function: props.editVideo
+    };
+  } else if (location.pathname === "/videos/form/new") {
+    form = {
+      title: "Video Upload Form",
+      message: "Video submitted succesfully",
+      function: props.addVideo
+    };
+  }
 
   function getStepContent(step) {
     switch (step) {
       case 0:
         return <FormPage setTitle={setTitle} setUrl={setUrl} />;
       case 1:
-        return <Review title={title} url={url} />;
+        return (
+          <Review
+            title={props.selectedvideo.title}
+            url={props.selectedvideo.url}
+          />
+        );
       default:
         throw new Error("Unknown step");
     }
@@ -106,12 +145,13 @@ const VideoForm = props => {
   };
 
   const handleSubmit = () => {
-    console.log("submit");
+    console.log("submit function", form.function);
     let newVideo = {
-      title: title,
-      url: url
+      title: props.videos.selectedvideo.title,
+      url: props.videos.selectedvideo.url
     };
-    props.addVideo(newVideo);
+
+    form.function(newVideo);
   };
 
   return (
@@ -123,7 +163,7 @@ const VideoForm = props => {
           <Grid style={{ justifyContent: "center" }} container spacing={2}>
             <Paper className={classes.paper}>
               <Typography component="h1" variant="h4" align="center">
-                Video Upload Form
+                {form.title}
               </Typography>
               <Stepper activeStep={activeStep} className={classes.stepper}>
                 {steps.map(label => (
@@ -136,11 +176,11 @@ const VideoForm = props => {
                 {activeStep === steps.length ? (
                   <React.Fragment>
                     <Typography variant="h5" gutterBottom>
-                      Your video has been submitted.
+                      {form.message}
                     </Typography>
                     <Typography variant="subtitle1">
-                      Please go to the users screen to give customers access to
-                      this video.
+                      Please review customers page to ensure proper access to
+                      video
                     </Typography>
                   </React.Fragment>
                 ) : (
@@ -175,7 +215,14 @@ const VideoForm = props => {
   );
 };
 
-export default connect(null, {
+const mapStateToProps = state => {
+  return {
+    videos: state.videos
+  };
+};
+
+export default connect(mapStateToProps, {
   addVideo,
-  editVideo
+  editVideo,
+  selectVideo
 })(VideoForm);

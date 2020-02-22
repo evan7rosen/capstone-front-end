@@ -89,7 +89,7 @@ const TopNav = props => {
           >
             <Button color="inherit">Videos</Button>
           </NavLink>
-          {location.pathname === "/videos" ? (
+          {location.pathname === "/videos" || location.pathname === "/admin" ? (
             <div
               className={classes.search}
               style={{ width: "50%", padding: "5px" }}

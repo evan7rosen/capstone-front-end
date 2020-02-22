@@ -31,7 +31,7 @@ const Review = props => {
       </div>
       <Paper p={2}>
         <Typography variant="h5">{props.title}</Typography>
-        <Typography variant="subtitle1">February 30, 2020</Typography>
+        <Typography variant="subtitle1">{props.date}</Typography>
       </Paper>
     </React.Fragment>
   );

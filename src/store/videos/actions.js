@@ -21,6 +21,7 @@ export const fetchAllVideos = () => async dispatch => {
 };
 
 export const addVideo = newVideo => async dispatch => {
+  console.log("add video", newVideo);
   dispatch({
     type: types.ADD_VIDEO_PENDING
   });
@@ -39,6 +40,7 @@ export const addVideo = newVideo => async dispatch => {
 };
 
 export const removeVideo = id => async dispatch => {
+  console.log("remove video", id);
   dispatch({
     type: types.REMOVE_VIDEO_PENDING
   });
@@ -58,6 +60,7 @@ export const removeVideo = id => async dispatch => {
 };
 
 export const editVideo = (updatedVideo, id) => async dispatch => {
+  console.log("edit video", updatedVideo);
   dispatch({
     type: types.EDIT_VIDEO_PENDING
   });
@@ -76,7 +79,7 @@ export const editVideo = (updatedVideo, id) => async dispatch => {
 };
 
 export const selectVideo = video => dispatch => {
-  console.log("select video", video.id);
+  console.log("select video", video);
   dispatch({
     type: types.SELECT_VIDEO_PENDING
   });
