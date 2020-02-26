@@ -1,12 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  Grid,
-  Paper,
-  Typography,
-  Button,
-  ButtonGroup
-} from "@material-ui/core";
+import { Button, ButtonGroup } from "@material-ui/core";
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
 import { NavLink } from "react-router-dom";
 
 import EditIcon from "@material-ui/icons/Edit";
@@ -23,14 +19,14 @@ const UserItem = ({ user, selectUser, removeUser }) => {
   }
 
   return (
-    <Grid item xs={12}>
-      <Paper
-        style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-      >
-        <Typography variant="subtitle1" style={{ flex: 1 }}>
-          <b>{user.name}</b>
-          <p> {user.email} </p>
-        </Typography>
+    <TableRow key={user.id}>
+      <TableCell component="th" scope="row">
+        {user.id}
+      </TableCell>
+      <TableCell align="right">{user.name}</TableCell>
+      <TableCell align="right">{user.email}</TableCell>
+      <TableCell align="right">Videos</TableCell>
+      <TableCell align="right">
         <ButtonGroup
           variant="text"
           color="primary"
@@ -46,8 +42,8 @@ const UserItem = ({ user, selectUser, removeUser }) => {
             <DeleteIcon />
           </Button>
         </ButtonGroup>
-      </Paper>
-    </Grid>
+      </TableCell>
+    </TableRow>
   );
 };
 

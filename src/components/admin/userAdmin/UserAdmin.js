@@ -2,6 +2,12 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
 import clsx from "clsx";
 import React from "react";
 import { connect } from "react-redux";
@@ -10,7 +16,6 @@ import { NavLink } from "react-router-dom";
 import { mainListItems } from "../dashboard/listItems";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import UserList from "./UserList";
@@ -102,10 +107,10 @@ const useStyles = makeStyles(theme => ({
     height: "100vh",
     overflow: "auto"
   },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
-  },
+  // container: {
+  //   paddingTop: theme.spacing(1),
+  //   paddingBottom: theme.spacing(1)
+  // },
   paper: {
     padding: theme.spacing(2),
     display: "flex",
@@ -122,7 +127,6 @@ const UserAdmin = props => {
 
   return (
     <div className={classes.root}>
-      {console.log("user admin props", props)}
       <CssBaseline />
       <Drawer
         variant="permanent"
@@ -136,25 +140,42 @@ const UserAdmin = props => {
         <div className={classes.appBarSpacer} />
 
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            <Box>
-              <NavLink
-                to="/videos/form/new"
-                style={{ textDecoration: "none", color: "black" }}
+          <Box
+            style={{
+              marginLeft: "20%",
+              marginRight: "20%",
+              marginBottom: "25px"
+            }}
+          >
+            <NavLink
+              to="/videos/form/new"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <Button
+                variant="contained"
+                className={classes.button}
+                size="large"
+                fullWidth="true"
+                onClick={console.log("click")}
               >
-                <Button
-                  variant="contained"
-                  className={classes.button}
-                  onClick={console.log("click")}
-                >
-                  Add New User
-                </Button>
-              </NavLink>
-            </Box>
-            <Box my={5}>
+                Add New User
+              </Button>
+            </NavLink>
+          </Box>
+          <TableContainer component={Paper} style={{ padding: "50px" }}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Id</TableCell>
+                  <TableCell align="right">Name</TableCell>
+                  <TableCell align="right">Email</TableCell>
+                  <TableCell align="right">Videos</TableCell>
+                  <TableCell align="right">Buttons</TableCell>
+                </TableRow>
+              </TableHead>
               <UserList />
-            </Box>
-          </Grid>
+            </Table>
+          </TableContainer>
           <Box pt={4}>
             <Copyright />
           </Box>

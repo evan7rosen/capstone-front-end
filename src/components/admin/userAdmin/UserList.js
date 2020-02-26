@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
+import TableBody from "@material-ui/core/TableBody";
 
 import UserItem from "./UserItem";
 
@@ -9,11 +9,7 @@ const UserList = ({ users }) => {
     <UserItem key={user.id} user={user} />
   ));
 
-  return (
-    <Grid container spacing={2} p={5}>
-      {listOfUsers}
-    </Grid>
-  );
+  return <TableBody>{listOfUsers}</TableBody>;
 };
 
 const mapStateToProps = state => {
