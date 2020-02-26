@@ -51,21 +51,6 @@ const useStyles = makeStyles(theme => ({
     padding: "0 8px",
     ...theme.mixins.toolbar
   },
-  // appBar: {
-  //   zIndex: theme.zIndex.drawer + 1,
-  //   transition: theme.transitions.create(["width", "margin"], {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.leavingScreen
-  //   })
-  // },
-  // appBarShift: {
-  //   marginLeft: drawerWidth,
-  //   width: `calc(100% - ${drawerWidth}px)`,
-  //   transition: theme.transitions.create(["width", "margin"], {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.enteringScreen
-  //   })
-  // },
   menuButton: {
     marginRight: 36
   },
@@ -102,7 +87,6 @@ const useStyles = makeStyles(theme => ({
     overflow: "auto"
   },
   container: {
-    paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4)
   },
   paper: {
@@ -135,7 +119,13 @@ const VideoAdmin = props => {
         <Container maxWidth="lg" className={classes.container}>
           <Grid style={{ justifyContent: "center" }} container spacing={10}>
             <Grid item xs={11}>
-              <Box>
+              <Box
+                style={{
+                  marginLeft: "20%",
+                  marginRight: "20%",
+                  marginBottom: "25px"
+                }}
+              >
                 <NavLink
                   to="/videos/form/new"
                   style={{ textDecoration: "none", color: "black" }}
@@ -143,6 +133,8 @@ const VideoAdmin = props => {
                   <Button
                     variant="contained"
                     className={classes.button}
+                    size="large"
+                    fullWidth={true}
                     onClick={clearSelectedVideo}
                   >
                     Add New Video

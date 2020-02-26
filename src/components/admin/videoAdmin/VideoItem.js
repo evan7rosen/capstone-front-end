@@ -23,6 +23,7 @@ const VideoItem = ({ video, selectVideo, removeVideo }) => {
   function deleteButtonClick(video) {
     var r = window.confirm(`Are you sure you want to delete ${video.title}?`);
     if (r === true) {
+      console.log(video.id);
       removeVideo(video.id);
     }
   }
