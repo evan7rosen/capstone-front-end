@@ -1,18 +1,28 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { GridList } from "@material-ui/core";
 import { connect } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
 
-import VideoItem from "./VideoItem";
+import VideoCard from "./VideoCard";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around"
+  }
+}));
 
 const VideoList = ({ videos }) => {
+  const classes = useStyles();
   const listOfVideos = videos.all.map(video => (
-    <VideoItem key={video.id} video={video} />
+    <VideoCard key={video.id} video={video} />
   ));
 
   return (
-    <Grid container spacing={2} p={5}>
+    <GridList className={classes.root} cols={3}>
       {listOfVideos}
-    </Grid>
+    </GridList>
   );
 };
 

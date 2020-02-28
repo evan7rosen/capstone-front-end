@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { selectVideo } from "../../store/videos/actions";
 
-import { Paper, Typography, Container } from "@material-ui/core";
+import { Paper, Typography, Container, Fab } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 
 const VideoDetail = props => {
   if (!props.videos.selectedVideo) return <div>Loading...</div>;
@@ -11,6 +13,14 @@ const VideoDetail = props => {
   return (
     <React.Fragment>
       <Container>
+        <Fab
+          style={{ display: "flex", align: "right" }}
+          color="secondary"
+          aria-label="close"
+          onClick={selectVideo({})}
+        >
+          <CloseIcon />
+        </Fab>
         <div
           className="video"
           style={{
@@ -52,4 +62,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(VideoDetail);
+export default connect(mapStateToProps, { selectVideo })(VideoDetail);
