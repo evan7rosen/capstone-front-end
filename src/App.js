@@ -31,10 +31,10 @@ const App = props => {
         <Route path="/register" component={Register} />
         <Route exact path="/videos" component={Video} />
         <Route exact path="/admin" component={Admin} />
-        <Route path="/users/admin" component={UserAdmin} />
-        <Route path="/videos/admin" component={VideoAdmin} />
-        <Route path="/users/form" component={UserForm} />
-        <Route path="/videos/form" component={VideoForm} />
+        <Route exact path="/users/admin" component={UserAdmin} />
+        <Route exact path="/videos/admin" component={VideoAdmin} />
+        <Route path="/users/admin/form" component={UserForm} />
+        <Route path="/videos/admin/form" component={VideoForm} />
       </Switch>
     </Router>
   );

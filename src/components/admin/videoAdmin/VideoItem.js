@@ -48,7 +48,7 @@ const VideoItem = ({ video, selectVideo, removeVideo }) => {
           aria-label="text primary button group"
           style={{ float: "right" }}
         >
-          <NavLink to="/videos/form/edit">
+          <NavLink to="/videos/admin/form/edit">
             <Button onClick={() => selectVideo(video)}>
               <EditIcon />
             </Button>

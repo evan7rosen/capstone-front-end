@@ -33,7 +33,7 @@ const UserItem = ({ user, selectUser, removeUser }) => {
           aria-label="text primary button group"
           style={{ float: "right" }}
         >
-          <NavLink to="/users/form/edit">
+          <NavLink to="/users/admin/form/edit">
             <Button onClick={() => selectUser(user)}>
               <EditIcon />
             </Button>

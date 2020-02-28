@@ -148,7 +148,7 @@ const UserAdmin = props => {
             }}
           >
             <NavLink
-              to="/videos/form/new"
+              to="/users/admin/form/new"
               style={{ textDecoration: "none", color: "black" }}
             >
               <Button
@@ -156,7 +156,7 @@ const UserAdmin = props => {
                 className={classes.button}
                 size="large"
                 fullWidth="true"
-                onClick={console.log("click")}
+                onClick={console.log("click users admin form new")}
               >
                 Add New User
               </Button>

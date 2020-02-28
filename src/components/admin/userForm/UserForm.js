@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
-import EditForm from "./UserForm";
+import FormPage from "./FormPage";
 import Review from "./Review";
+import SideNav from "../reusable/SideNav";
+import { addUser, editUser, selectUser } from "../../../store/users/actions";
+import { useLocation } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -30,6 +33,12 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     position: "relative"
   },
+  appBarSpacer: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    height: "100vh",
+    overflow: "auto"
+  },
   layout: {
     width: "auto",
     marginLeft: theme.spacing(2),
@@ -39,6 +48,10 @@ const useStyles = makeStyles(theme => ({
       marginLeft: "auto",
       marginRight: "auto"
     }
+  },
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4)
   },
   paper: {
     marginTop: theme.spacing(3),
@@ -63,24 +76,80 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const steps = ["Edit information", "Review User"];
+const steps = ["Edit Information", "Review and Submit"];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <EditForm />;
-    case 1:
-      return <Review />;
-    default:
-      throw new Error("Unknown step");
-  }
-}
-
-export default function VideoForm() {
+const UserForm = props => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const location = useLocation();
+  const [activeStep, setActiveStep] = useState(0);
+
+  const setName = name => {
+    props.selectUser({
+      name: name,
+      email: props.users.selectedUser.email,
+      password: props.users.selectedUser.password
+    });
+  };
+
+  const setEmail = email => {
+    props.selectUser({
+      name: props.users.selectedUser.name,
+      email: email,
+      password: props.users.selectedUser.password
+    });
+  };
+
+  const setPassword = password => {
+    props.selectUser({
+      name: props.users.selectedUser.name,
+      email: props.users.selectedUser.email,
+      password: password
+    });
+  };
+
+  let form = {};
+
+  if (location.pathname === "/users/admin/form/edit") {
+    form = {
+      title: "Edit User",
+      message: "Success!",
+      function: props.editUser
+    };
+  } else if (location.pathname === "/users/admin/form/new") {
+    form = {
+      title: "Add New User",
+      message: "Success!",
+      function: props.addUser
+    };
+  }
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return (
+          <FormPage
+            setName={setName}
+            setEmail={setEmail}
+            setPassword={setPassword}
+          />
+        );
+      case 1:
+        return (
+          <Review
+            name={props.users.selectedUser.name}
+            email={props.users.selectedUser.email}
+            password={props.users.selectedUser.password}
+          />
+        );
+      default:
+        throw new Error("Unknown step");
+    }
+  }
 
   const handleNext = () => {
+    if (activeStep === steps.length - 1) {
+      handleSubmit();
+    }
     setActiveStep(activeStep + 1);
   };
 
@@ -88,64 +157,82 @@ export default function VideoForm() {
     setActiveStep(activeStep - 1);
   };
 
+  const handleSubmit = () => {
+    console.log("submit function", form.function);
+    let newUser = {
+      title: props.users.selectedUser.title,
+      url: props.users.selectedUser.url
+    };
+
+    form.function(newUser);
+  };
+
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="absolute" color="default" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Double R Video Productions
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <main className={classes.layout}>
-        <Paper className={classes.paper}>
-          <Typography component="h1" variant="h4" align="center">
-            Checkout
-          </Typography>
-          <Stepper activeStep={activeStep} className={classes.stepper}>
-            {steps.map(label => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          <React.Fragment>
-            {activeStep === steps.length ? (
+      <Grid container xs={12}>
+        <SideNav />
+        <main className={classes.layout}>
+          <Grid style={{ justifyContent: "center" }} container spacing={2}>
+            <Paper className={classes.paper}>
+              <Typography component="h1" variant="h4" align="center">
+                {form.title}
+              </Typography>
+              <Stepper activeStep={activeStep} className={classes.stepper}>
+                {steps.map(label => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
               <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
-                </Typography>
+                {activeStep === steps.length ? (
+                  <React.Fragment>
+                    <Typography variant="h5" gutterBottom>
+                      {form.message}
+                    </Typography>
+                    <Typography variant="subtitle1">
+                      Please review videos page to ensure proper access to User
+                    </Typography>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    {getStepContent(activeStep)}
+                    <div className={classes.buttons}>
+                      {activeStep !== 0 && (
+                        <Button onClick={handleBack} className={classes.button}>
+                          Back
+                        </Button>
+                      )}
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleNext}
+                        className={classes.button}
+                      >
+                        {activeStep === steps.length - 1 ? "Add User" : "Next"}
+                      </Button>
+                    </div>
+                  </React.Fragment>
+                )}
               </React.Fragment>
-            ) : (
-              <React.Fragment>
-                {getStepContent(activeStep)}
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
-                  </Button>
-                </div>
-              </React.Fragment>
-            )}
-          </React.Fragment>
-        </Paper>
-        <Copyright />
-      </main>
+            </Paper>
+            <Copyright />
+          </Grid>
+        </main>
+      </Grid>
     </React.Fragment>
   );
-}
+};
+
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  };
+};
+
+export default connect(mapStateToProps, {
+  addUser,
+  editUser,
+  selectUser
+})(UserForm);

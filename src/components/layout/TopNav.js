@@ -115,7 +115,16 @@ const TopNav = props => {
           >
             <Button color="inherit">Admin Portal</Button>
           </NavLink>
-          <Button color="inherit">Login</Button>
+          {!location.pathname === "/" ? (
+            <NavLink
+              to="/"
+              style={{ textDecoration: "none", color: "black", padding: "5px" }}
+            >
+              <Button color="inherit">Logout</Button>
+            </NavLink>
+          ) : (
+            ""
+          )}
         </Toolbar>
       </AppBar>
     </div>
