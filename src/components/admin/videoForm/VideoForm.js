@@ -149,9 +149,6 @@ const VideoForm = props => {
   };
 
   const handleSubmit = () => {
-    console.log("selectedVideo", props.videos.selectedVideo);
-    console.log("id", props.videos.selectedVideo.id);
-
     form.function(props.videos.selectedVideo, props.videos.selectedVideo.id);
   };
 
