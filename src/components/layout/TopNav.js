@@ -3,10 +3,8 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import InputBase from "@material-ui/core/InputBase";
-import SearchIcon from "@material-ui/icons/Search";
 
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import Logo from "./logo.jpg";
 
@@ -65,7 +63,6 @@ const useStyles = makeStyles(theme => ({
 
 const TopNav = props => {
   const classes = useStyles();
-  const location = useLocation();
 
   return (
     <div className={classes.root}>
@@ -89,42 +86,18 @@ const TopNav = props => {
           >
             <Button color="inherit">Videos</Button>
           </NavLink>
-          {location.pathname === "/videos" || location.pathname === "/admin" ? (
-            <div
-              className={classes.search}
-              style={{ width: "50%", padding: "5px" }}
-            >
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
-            </div>
-          ) : (
-            ""
-          )}
           <NavLink
             to="/admin"
             style={{ textDecoration: "none", color: "black", padding: "5px" }}
           >
             <Button color="inherit">Admin Portal</Button>
           </NavLink>
-          {!location.pathname === "/" ? (
-            <NavLink
-              to="/"
-              style={{ textDecoration: "none", color: "black", padding: "5px" }}
-            >
-              <Button color="inherit">Logout</Button>
-            </NavLink>
-          ) : (
-            ""
-          )}
+          <NavLink
+            to="/"
+            style={{ textDecoration: "none", color: "black", padding: "5px" }}
+          >
+            <Button color="inherit">Logout</Button>
+          </NavLink>
         </Toolbar>
       </AppBar>
     </div>
