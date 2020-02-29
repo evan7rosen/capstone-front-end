@@ -19,12 +19,14 @@ import {
   selectVideo
 } from "../../../store/videos/actions";
 
-const VideoItem = ({ video, selectVideo, removeVideo }) => {
+const VideoItem = props => {
   function deleteButtonClick(video) {
-    var r = window.confirm(`Are you sure you want to delete ${video.title}?`);
+    var r = window.confirm(
+      `Are you sure you want to delete ${props.video.title}?`
+    );
     if (r === true) {
-      console.log(video.id);
-      removeVideo(video.id);
+      console.log(props.video.id);
+      props.removeVideo(props.video.id);
     }
   }
 
@@ -39,8 +41,8 @@ const VideoItem = ({ video, selectVideo, removeVideo }) => {
           src={VidImg}
         />
         <Typography variant="subtitle1" style={{ flex: 1 }}>
-          <b>{video.title}</b>
-          <p> {video.date} </p>
+          <b>{props.video.title}</b>
+          <p> {props.video.date} </p>
         </Typography>
         <ButtonGroup
           variant="text"
@@ -49,11 +51,11 @@ const VideoItem = ({ video, selectVideo, removeVideo }) => {
           style={{ float: "right" }}
         >
           <NavLink to="/videos/admin/form/edit">
-            <Button onClick={() => selectVideo(video)}>
+            <Button onClick={() => props.selectVideo(props.video)}>
               <EditIcon />
             </Button>
           </NavLink>
-          <Button onClick={() => deleteButtonClick(video)}>
+          <Button onClick={() => deleteButtonClick(props.video)}>
             <DeleteIcon />
           </Button>
         </ButtonGroup>

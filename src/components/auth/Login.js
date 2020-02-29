@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -62,6 +62,28 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login() {
   const classes = useStyles();
+  let history = useHistory();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  let loginFailed = "";
+
+  const login = e => {
+    e.preventDefault();
+    if (!email || !password) {
+      loginFailed = "Please enter email and password.";
+    } else if (
+      email.toLowerCase() === "joe.robles@usaa.com" &&
+      password.toLowerCase() === "usaa1234"
+    ) {
+      history.push("/videos");
+    } else if (
+      email.toLowerCase() === "evan@doublervideo.com" &&
+      password.toLowerCase() === "usaa1234"
+    ) {
+      history.push("/admin");
+    } else loginFailed = "Incorrect email or password.";
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -74,6 +96,7 @@ export default function Login() {
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
+            {loginFailed}
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -86,6 +109,8 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={e => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -97,22 +122,23 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <NavLink to="/videos">
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Sign In
-              </Button>
-            </NavLink>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={e => login(e)}
+            >
+              Sign In
+            </Button>
             <Grid container>
               <Grid item xs>
                 <Link variant="body2">Forgot password?</Link>

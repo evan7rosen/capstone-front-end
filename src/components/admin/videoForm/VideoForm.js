@@ -87,8 +87,11 @@ const VideoForm = props => {
   const location = useLocation();
   const [activeStep, setActiveStep] = useState(0);
 
+  console.log("selected video", props.videos.selectedVideo);
+
   const setTitle = title => {
     props.selectVideo({
+      id: props.videos.selectedVideo.id,
       title: title,
       url: props.videos.selectedVideo.url
     });
@@ -96,6 +99,7 @@ const VideoForm = props => {
 
   const setUrl = url => {
     props.selectVideo({
+      id: props.videos.selectedVideo.id,
       title: props.videos.selectedVideo.title,
       url: url
     });
@@ -103,13 +107,13 @@ const VideoForm = props => {
 
   let form = {};
 
-  if (location.pathname === "/videos/form/edit") {
+  if (location.pathname === "/videos/admin/form/edit") {
     form = {
       title: "Video Edit Form",
       message: "Video edited successfully",
       function: props.editVideo
     };
-  } else if (location.pathname === "/videos/form/new") {
+  } else if (location.pathname === "/videos/admin/form/new") {
     form = {
       title: "Video Upload Form",
       message: "Video submitted succesfully",
@@ -145,13 +149,10 @@ const VideoForm = props => {
   };
 
   const handleSubmit = () => {
-    console.log("submit function", form.function);
-    let newVideo = {
-      title: props.videos.selectedVideo.title,
-      url: props.videos.selectedVideo.url
-    };
+    console.log("selectedVideo", props.videos.selectedVideo);
+    console.log("id", props.videos.selectedVideo.id);
 
-    form.function(newVideo);
+    form.function(props.videos.selectedVideo, props.videos.selectedVideo.id);
   };
 
   return (
