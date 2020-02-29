@@ -45,7 +45,7 @@ export const removeVideo = id => async dispatch => {
     type: types.REMOVE_VIDEO_PENDING
   });
   try {
-    let response = await axios.delete(BASE_URL, id);
+    let response = await axios.delete(BASE_URL + `/${id}`);
     dispatch({
       type: types.REMOVE_VIDEO_SUCCESS,
       payload: id

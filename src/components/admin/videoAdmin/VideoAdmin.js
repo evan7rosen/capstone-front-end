@@ -104,9 +104,7 @@ const VideoAdmin = props => {
   const classes = useStyles();
 
   const clearSelectedVideo = () => {
-    console.log("click");
     props.selectVideo({});
-    console.log(props.videos.selectedVideo);
   };
 
   return (

@@ -85,6 +85,7 @@ const UserForm = props => {
 
   const setName = name => {
     props.selectUser({
+      id: props.users.selectedUser.id,
       name: name,
       email: props.users.selectedUser.email,
       password: props.users.selectedUser.password
@@ -93,6 +94,7 @@ const UserForm = props => {
 
   const setEmail = email => {
     props.selectUser({
+      id: props.users.selectedUser.id,
       name: props.users.selectedUser.name,
       email: email,
       password: props.users.selectedUser.password
@@ -101,6 +103,7 @@ const UserForm = props => {
 
   const setPassword = password => {
     props.selectUser({
+      id: props.users.selectedUser.id,
       name: props.users.selectedUser.name,
       email: props.users.selectedUser.email,
       password: password
@@ -158,13 +161,7 @@ const UserForm = props => {
   };
 
   const handleSubmit = () => {
-    console.log("submit function", form.function);
-    let newUser = {
-      title: props.users.selectedUser.title,
-      url: props.users.selectedUser.url
-    };
-
-    form.function(newUser);
+    form.function(props.users.selectedUser, props.users.selectedUser.id);
   };
 
   return (

@@ -125,6 +125,10 @@ const useStyles = makeStyles(theme => ({
 const UserAdmin = props => {
   const classes = useStyles();
 
+  const clearSelectedUser = () => {
+    props.selectUser({});
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -156,7 +160,7 @@ const UserAdmin = props => {
                 className={classes.button}
                 size="large"
                 fullWidth="true"
-                onClick={console.log("click users admin form new")}
+                onClick={clearSelectedUser}
               >
                 Add New User
               </Button>
