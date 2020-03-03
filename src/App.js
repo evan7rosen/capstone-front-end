@@ -15,6 +15,7 @@ import UserAdmin from "./components/admin/userAdmin/UserAdmin";
 import VideoAdmin from "./components/admin/videoAdmin/VideoAdmin";
 import UserForm from "./components/admin/userForm/UserForm";
 import VideoForm from "./components/admin/videoForm/VideoForm";
+import Homepage from "./components/homepage/Homepage";
 
 const App = props => {
   useEffect(() => {
@@ -27,7 +28,8 @@ const App = props => {
     <Router>
       <TopNav />
       <Switch>
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" component={Homepage} />
+        <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route exact path="/videos" component={Video} />
         <Route exact path="/admin" component={Admin} />

@@ -22,8 +22,12 @@ const VideoCard = ({ video, selectVideo }) => {
   };
 
   return (
-    <GridListTile>
-      <Card className={classes.root} onClick={() => handleClick(video)}>
+    <GridListTile style={{ marginBottom: "25px" }}>
+      <Card
+        className={classes.root}
+        onClick={() => handleClick(video)}
+        variant="outlined"
+      >
         <CardMedia
           component="img"
           alt="Video thumbnail"

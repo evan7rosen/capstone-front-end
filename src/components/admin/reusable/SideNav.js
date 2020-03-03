@@ -42,6 +42,7 @@ export default function SideNav() {
       classes={{
         paper: clsx(classes.drawerPaper)
       }}
+      style={{ marginTop: "64px" }}
     >
       <List>{mainListItems}</List>
     </Drawer>

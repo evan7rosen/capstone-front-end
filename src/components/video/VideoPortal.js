@@ -7,7 +7,11 @@ import VideoDetail from "./VideoDetail";
 
 const VideoPortal = props => {
   return (
-    <Grid style={{ justifyContent: "center" }} container spacing={10}>
+    <Grid
+      style={{ justifyContent: "center", marginTop: "60px" }}
+      container
+      spacing={10}
+    >
       <Grid container xs={11}>
         <Box my={5}>
           <Box my={2}>
