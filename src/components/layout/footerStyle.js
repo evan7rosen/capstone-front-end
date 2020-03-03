@@ -1,4 +1,4 @@
-import { container, primaryColor } from "../homepage/styles/material-kit-react";
+import { container, primaryColor } from "../homepage/styles/styles";
 
 const footerStyle = {
   block: {

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
-import styles from "./styles/parallaxStyle";
+import styles from "../styles/parallaxStyle";
 
 const useStyles = makeStyles(styles);
 

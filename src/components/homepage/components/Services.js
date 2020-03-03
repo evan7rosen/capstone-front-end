@@ -7,21 +7,22 @@ import HeadsetIcon from "@material-ui/icons/Headset";
 import Grid from "@material-ui/core/Grid";
 import InfoArea from "./InfoArea";
 
-import styles from "./styles/productStyle";
+import styles from "../styles/servicesStyle";
 
 const useStyles = makeStyles(styles);
 
-export default function ProductSection() {
+export default function Services() {
   const classes = useStyles();
   return (
     <div className={classes.section}>
       <Grid container justify="center">
         <Grid item xs={12} sm={12} md={8}>
           <Typography
-            className={classes.title}
-            variant="h4"
-            component="h4"
+            component="h2"
+            variant="h3"
             align="center"
+            color="textPrimary"
+            gutterBottom
           >
             Let us capture your next event!
           </Typography>
@@ -63,7 +64,7 @@ export default function ProductSection() {
             <InfoArea
               title="Music Videos"
               description="Whether its a live show in front of thousands of cheering fans, a studio music 
-              video shoot, or anything in between, we will be there to make your band look great."
+              video shoot, or anything in between, we will be there to capture your performance at its best."
               icon={HeadsetIcon}
               iconColor="danger"
               vertical

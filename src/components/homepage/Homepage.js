@@ -5,11 +5,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Footer from "../layout/Footer";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Parallax from "./Parallax";
+import Parallax from "./components/Parallax";
 
 import styles from "./styles/HomepageStyles";
 
-import ProductSection from "./ProductSection";
+import Services from "./components/Services";
+import Customer from "./components/Customer";
 
 const useStyles = makeStyles(styles);
 
@@ -17,7 +18,7 @@ export default function Homepage(props) {
   const classes = useStyles();
   return (
     <div>
-      <Parallax filter image={require("./tempe.jpg")}>
+      <Parallax filter image={require("./components/tempe.jpg")}>
         <Grid xs={12} sm={12} md={6}>
           <Typography
             className={classes.text}
@@ -39,7 +40,8 @@ export default function Homepage(props) {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          <ProductSection />
+          <Services />
+          <Customer />
         </div>
       </div>
       <Footer />

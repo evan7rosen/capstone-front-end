@@ -1,12 +1,10 @@
 import React from "react";
-// nodejs library to set properties for components
 import PropTypes from "prop-types";
-// nodejs library that concatenates classes
 import classNames from "classnames";
-// @material-ui/core components
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
-import styles from "./styles/infoStyle";
+import styles from "../styles/infoStyle";
 
 const useStyles = makeStyles(styles);
 
@@ -28,8 +26,10 @@ export default function InfoArea(props) {
         <props.icon className={iconClasses} />
       </div>
       <div className={classes.descriptionWrapper}>
-        <h4 className={classes.title}>{title}</h4>
-        <p className={classes.description}>{description}</p>
+        <Typography component="h5" variant="h5" style={{ color: "black" }}>
+          {title}
+        </Typography>
+        <Typography>{description}</Typography>
       </div>
     </div>
   );
