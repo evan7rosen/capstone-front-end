@@ -1,6 +1,4 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -8,17 +6,17 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
-import clsx from "clsx";
+import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
-import { mainListItems } from "../dashboard/listItems";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import UserList from "./UserList";
+import SideNav from "../reusable/SideNav";
 
 import {
   addUser,
@@ -47,6 +45,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
+  button: {
+    margin: theme.spacing(1)
+  },
   toolbar: {
     paddingRight: 24 // keep right padding when drawer closed
   },
@@ -56,21 +57,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "flex-end",
     padding: "0 8px",
     ...theme.mixins.toolbar
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
   },
   menuButton: {
     marginRight: 36
@@ -105,12 +91,12 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     height: "100vh",
-    overflow: "auto"
+    overflow: "auto",
+    marginTop: "60px"
   },
-  // container: {
-  //   paddingTop: theme.spacing(1),
-  //   paddingBottom: theme.spacing(1)
-  // },
+  container: {
+    paddingBottom: theme.spacing(4)
+  },
   paper: {
     padding: theme.spacing(2),
     display: "flex",
@@ -132,57 +118,54 @@ const UserAdmin = props => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper)
-        }}
-      >
-        <List>{mainListItems}</List>
-      </Drawer>
+      <SideNav />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
 
         <Container maxWidth="lg" className={classes.container}>
-          <Box
-            style={{
-              marginLeft: "20%",
-              marginRight: "20%",
-              marginBottom: "25px"
-            }}
-          >
-            <NavLink
-              to="/users/admin/form/new"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <Button
-                variant="contained"
-                className={classes.button}
-                size="large"
-                fullWidth="true"
-                onClick={clearSelectedUser}
+          <Grid style={{ justifyContent: "center" }} container spacing={10}>
+            <Grid item xs={11}>
+              <Box
+                style={{
+                  marginLeft: "20%",
+                  marginRight: "20%",
+                  marginBottom: "25px"
+                }}
               >
-                Add New User
-              </Button>
-            </NavLink>
-          </Box>
-          <TableContainer component={Paper} style={{ padding: "50px" }}>
-            <Table className={classes.table} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Id</TableCell>
-                  <TableCell align="right">Name</TableCell>
-                  <TableCell align="right">Email</TableCell>
-                  <TableCell align="right">Videos</TableCell>
-                  <TableCell align="right">Buttons</TableCell>
-                </TableRow>
-              </TableHead>
-              <UserList />
-            </Table>
-          </TableContainer>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
+                <NavLink
+                  to="/users/admin/form/new"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <Button
+                    variant="contained"
+                    className={classes.button}
+                    size="large"
+                    fullWidth="true"
+                    onClick={clearSelectedUser}
+                  >
+                    Add New User
+                  </Button>
+                </NavLink>
+              </Box>
+              <TableContainer component={Paper} style={{ padding: "50px" }}>
+                <Table className={classes.table} aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Id</TableCell>
+                      <TableCell align="right">Name</TableCell>
+                      <TableCell align="right">Email</TableCell>
+                      <TableCell align="right">Videos</TableCell>
+                      <TableCell align="right">Buttons</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <UserList />
+                </Table>
+              </TableContainer>
+              <Box pt={4}>
+                <Copyright />
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
       </main>
     </div>

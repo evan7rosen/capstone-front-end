@@ -9,7 +9,7 @@ import Parallax from "./Parallax";
 
 import styles from "./styles/HomepageStyles";
 
-import ProductSection from "./sections/ProductSection";
+import ProductSection from "./ProductSection";
 
 const useStyles = makeStyles(styles);
 

@@ -12,7 +12,6 @@ import { NavLink } from "react-router-dom";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-import VidImg from "./video.jpg";
 import {
   editVideo,
   removeVideo,
@@ -38,7 +37,7 @@ const VideoItem = props => {
         <img
           style={{ marginRight: "20px", height: "100px" }}
           alt="thumbnail"
-          src={VidImg}
+          src={`https://img.youtube.com/vi/${props.video.url}/hqdefault.jpg`}
         />
         <Typography variant="subtitle1" style={{ flex: 1 }}>
           <b>{props.video.title}</b>

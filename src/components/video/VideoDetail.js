@@ -12,15 +12,15 @@ const VideoDetail = props => {
 
   return (
     <React.Fragment>
+      <Fab
+        style={{ display: "flex", align: "right" }}
+        color="secondary"
+        aria-label="close"
+        // onClick={props.selectVideo({})}
+      >
+        <CloseIcon />
+      </Fab>
       <Container>
-        <Fab
-          style={{ display: "flex", align: "right" }}
-          color="secondary"
-          aria-label="close"
-          onClick={selectVideo({})}
-        >
-          <CloseIcon />
-        </Fab>
         <div
           className="video"
           style={{
