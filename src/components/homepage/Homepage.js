@@ -18,22 +18,22 @@ export default function Homepage(props) {
   return (
     <div>
       <Parallax filter image={require("./tempe.jpg")}>
-        <Grid item xs={12} sm={12} md={6}>
+        <Grid xs={12} sm={12} md={6}>
           <Typography
+            className={classes.text}
             variant="h3"
             component="h3"
             align="center"
-            style={{ color: "white", marginLeft: "10%" }}
           >
             Double R Video Productions
           </Typography>
           <Typography
+            className={classes.text}
             variant="h5"
             component="h5"
             align="center"
-            style={{ color: "white", marginLeft: "10%" }}
           >
-            Producing memorable videos for organizations and families since 1988
+            Phoenix, AZ based Video Production Company
           </Typography>
         </Grid>
       </Parallax>

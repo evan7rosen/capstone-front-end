@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Chat from "@material-ui/icons/Chat";
+import Typography from "@material-ui/core/Typography";
 import VerifiedUser from "@material-ui/icons/VerifiedUser";
 import Fingerprint from "@material-ui/icons/Fingerprint";
 import Grid from "@material-ui/core/Grid";
@@ -16,14 +17,24 @@ export default function ProductSection() {
     <div className={classes.section}>
       <Grid container justify="center">
         <Grid item xs={12} sm={12} md={8}>
-          <h2 className={classes.title}>Let{"'"}s talk product</h2>
-          <h5 className={classes.description}>
-            This is the paragraph where you can write more details about your
-            product. Keep you user engaged by providing meaningful information.
-            Remember that by this time, the user is curious, otherwise he wouldn
-            {"'"}t scroll to get here. Add a button if you want the user to see
-            more.
-          </h5>
+          <Typography
+            className={classes.title}
+            variant="h4"
+            component="h4"
+            align="center"
+          >
+            Let us capture your next event!
+          </Typography>
+          <Typography
+            className={classes.description}
+            variant="h6"
+            component="h6"
+            align="center"
+          >
+            Double R Video strives to be your video production partner of
+            choice. We specialize in event video, sports, music videos, digital
+            content, and corporate video.
+          </Typography>
         </Grid>
       </Grid>
       <div>
