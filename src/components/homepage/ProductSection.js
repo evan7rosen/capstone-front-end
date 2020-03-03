@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Chat from "@material-ui/icons/Chat";
+import TodayIcon from "@material-ui/icons/Today";
+import VideocamIcon from "@material-ui/icons/Videocam";
 import Typography from "@material-ui/core/Typography";
-import VerifiedUser from "@material-ui/icons/VerifiedUser";
-import Fingerprint from "@material-ui/icons/Fingerprint";
+import HeadsetIcon from "@material-ui/icons/Headset";
 import Grid from "@material-ui/core/Grid";
 import InfoArea from "./InfoArea";
 
@@ -41,27 +41,30 @@ export default function ProductSection() {
         <Grid container>
           <Grid item xs={12} sm={12} md={4}>
             <InfoArea
-              title="Free Chat"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-              icon={Chat}
+              title="Event Video"
+              description="We will bring our production equipment and professional videographers to capture 
+              your next event, anything from sports and arts, to corporate events and confrences."
+              icon={TodayIcon}
               iconColor="info"
               vertical
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <InfoArea
-              title="Verified Users"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-              icon={VerifiedUser}
+              title="Web Content"
+              description="We developed a YouTube channel for ABC Cake Decorating Supplies with thousands 
+              of subscribers and hundreds of thousands of views, and we can do the same for you."
+              icon={VideocamIcon}
               iconColor="success"
               vertical
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <InfoArea
-              title="Fingerprint"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-              icon={Fingerprint}
+              title="Music Videos"
+              description="Whether its a live show in front of thousands of cheering fans, a studio music 
+              video shoot, or anything in between, we will be there to make your band look great."
+              icon={HeadsetIcon}
               iconColor="danger"
               vertical
             />
