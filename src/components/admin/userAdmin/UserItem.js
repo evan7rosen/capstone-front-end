@@ -12,7 +12,7 @@ import { editUser, removeUser, selectUser } from "../../../store/users/actions";
 
 const UserItem = ({ user, selectUser, removeUser }) => {
   function deleteButtonClick(user) {
-    var r = window.confirm(`Are you sure you want to delete ${user.title}?`);
+    var r = window.confirm(`Are you sure you want to delete ${user.name}?`);
     if (r === true) {
       removeUser(user.id);
     }

@@ -3,7 +3,7 @@ import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import React from "react";
-import { mainListItems } from "../dashboard/listItems";
+import { mainListItems } from "./listItems";
 
 const drawerWidth = 200;
 

@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -67,9 +68,18 @@ export default function Album() {
             <div className={classes.buttons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
-                    Log In
-                  </Button>
+                  <NavLink
+                    to="/login"
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      padding: "5px"
+                    }}
+                  >
+                    <Button variant="contained" color="primary">
+                      Log In
+                    </Button>
+                  </NavLink>
                 </Grid>
               </Grid>
             </div>

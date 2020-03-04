@@ -18,12 +18,12 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     justifyContent: "center",
     marginTop: theme.spacing(10),
-    marginBottom: theme.spacing(20)
+    marginBottom: theme.spacing(5)
   },
   form: {
     width: "100%",
     marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(5)
+    marginBottom: theme.spacing(15)
   },
   submit: {
     margin: theme.spacing(3, 1, 2)
@@ -62,7 +62,10 @@ export default function ContactUs() {
         <Grid container>
           <CssBaseline />
           <Grid item xs={false} sm={3} md={6}>
-            <List component="nav" aria-label="contact information">
+            <List
+              aria-label="contact information"
+              style={{ marginTop: "50px" }}
+            >
               <ListItem className={classes.list}>
                 <ListItemIcon>
                   <PhoneIcon className={classes.icon} />

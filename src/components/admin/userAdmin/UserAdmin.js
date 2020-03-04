@@ -16,7 +16,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import UserList from "./UserList";
-import SideNav from "../reusable/SideNav";
+import SideNav from "../layout/SideNav";
 
 import {
   addUser,
@@ -155,7 +155,7 @@ const UserAdmin = props => {
                       <TableCell align="right">Name</TableCell>
                       <TableCell align="right">Email</TableCell>
                       <TableCell align="right">Videos</TableCell>
-                      <TableCell align="right">Buttons</TableCell>
+                      <TableCell align="right">Edit - Delete</TableCell>
                     </TableRow>
                   </TableHead>
                   <UserList />
