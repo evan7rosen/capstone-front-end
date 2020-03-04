@@ -45,8 +45,8 @@ export default function Album() {
       <div className={classes.heroContent}>
         <Container maxWidth="sm">
           <Typography
-            component="h5"
-            variant="h5"
+            component="h4"
+            variant="h4"
             align="center"
             color="textPrimary"
             gutterBottom

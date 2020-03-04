@@ -11,6 +11,8 @@ import styles from "./styles/HomepageStyles";
 
 import Services from "./components/Services";
 import Customer from "./components/Customer";
+import DemoReel from "./components/DemoReel";
+import ContactUs from "./components/ContactUs";
 
 const useStyles = makeStyles(styles);
 
@@ -41,7 +43,9 @@ export default function Homepage(props) {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           <Services />
+          <DemoReel />
           <Customer />
+          <ContactUs />
         </div>
       </div>
       <Footer />
