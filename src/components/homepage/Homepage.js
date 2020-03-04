@@ -6,7 +6,7 @@ import Footer from "../layout/Footer";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Parallax from "./components/Parallax";
-
+import Divider from "@material-ui/core/Divider";
 import styles from "./styles/HomepageStyles";
 
 import Services from "./components/Services";
@@ -43,8 +43,11 @@ export default function Homepage(props) {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           <Services />
+          <Divider variant="middle" />
           <DemoReel />
+          <Divider variant="middle" />
           <Customer />
+          <Divider variant="middle" />
           <ContactUs />
         </div>
       </div>

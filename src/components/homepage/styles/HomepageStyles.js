@@ -37,7 +37,8 @@ const landingPageStyle = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    alignSelf: "flex-start"
+    alignSelf: "flex-start",
+    textShadow: "1px 1px #000"
   }
 };
 

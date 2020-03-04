@@ -7,9 +7,27 @@ import HeadsetIcon from "@material-ui/icons/Headset";
 import Grid from "@material-ui/core/Grid";
 import InfoArea from "./InfoArea";
 
-import styles from "../styles/servicesStyle";
-
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(theme => ({
+  section: {
+    padding: "70px 0",
+    textAlign: "center",
+    marginTop: theme.spacing(10),
+    marginBottom: theme.spacing(10)
+  },
+  title: {
+    color: "#3C4858",
+    margin: "1.75rem 0 0.875rem",
+    textDecoration: "none",
+    fontWeight: "700",
+    fontFamily: `"Roboto Slab", "Times New Roman", serif`,
+    marginBottom: "1rem",
+    marginTop: "30px",
+    minHeight: "32px"
+  },
+  description: {
+    color: "#999"
+  }
+}));
 
 export default function Services() {
   const classes = useStyles();

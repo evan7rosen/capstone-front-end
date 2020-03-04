@@ -1,32 +1,42 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import PhoneIcon from "@material-ui/icons/Phone";
+import EmailIcon from "@material-ui/icons/Email";
+import RoomIcon from "@material-ui/icons/Room";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
+  main: {
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: theme.spacing(10),
+    marginBottom: theme.spacing(20)
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    width: "100%",
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(3, 1, 2)
+  },
+  list: {
+    marginBottom: theme.spacing(2)
+  },
+  text: {
+    color: "initial",
+    fontSize: "20px"
+  },
+  icon: {
+    fontSize: "40px"
   }
 }));
 
@@ -35,86 +45,103 @@ export default function ContactUs() {
 
   return (
     <React.Fragment>
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
+      <Grid
+        container
+        component="main"
+        className={classes.main}
+        justify="center"
+      >
+        <Typography
+          component="h1"
+          variant="h4"
+          gutterBottom
+          style={{ color: "initial", marginBottom: "25px" }}
+        >
+          Contact Us
         </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
+        <Grid container>
+          <CssBaseline />
+          <Grid item xs={false} sm={3} md={6}>
+            <List component="nav" aria-label="contact information">
+              <ListItem className={classes.list}>
+                <ListItemIcon>
+                  <PhoneIcon className={classes.icon} />
+                </ListItemIcon>
+                <Typography className={classes.text}>(602) 881-4597</Typography>
+              </ListItem>
+              <ListItem className={classes.list}>
+                <ListItemIcon>
+                  <EmailIcon className={classes.icon} />
+                </ListItemIcon>
+                <Typography className={classes.text}>
+                  <a
+                    href="mailto:evan@doublervideo.com"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    evan@doublervideo.com
+                  </a>
+                </Typography>
+              </ListItem>
+              <ListItem className={classes.list}>
+                <ListItemIcon>
+                  <RoomIcon className={classes.icon} />
+                </ListItemIcon>
+                <Typography className={classes.text}>Phoenix, AZ</Typography>
+              </ListItem>
+            </List>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
+          <Grid item xs={12} sm={8} md={5}>
+            <form className={classes.form}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="name"
+                    name="name"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Name"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    type="email"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="message"
+                    label="Message"
+                    name="message"
+                    multiline
+                    rows="4"
+                  />
+                </Grid>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Send Message
+                </Button>
+              </Grid>
+            </form>
           </Grid>
-        </form>
-      </div>
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 }
