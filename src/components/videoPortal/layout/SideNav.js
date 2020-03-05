@@ -5,7 +5,7 @@ import clsx from "clsx";
 import React from "react";
 import { sideNavItems } from "./sideNavItems";
 
-const drawerWidth = 200;
+const drawerWidth = 225;
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { userLogin } from "../../store/users/actions";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -61,7 +63,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Login() {
+const Login = props => {
   const classes = useStyles();
   let history = useHistory();
   const [email, setEmail] = useState();
@@ -77,11 +79,13 @@ export default function Login() {
       email.toLowerCase() === "joe.robles@usaa.com" &&
       password.toLowerCase() === "usaa1234"
     ) {
-      history.push("/videos");
+      props.userLogin(1);
+      history.push("/videos/1");
     } else if (
       email.toLowerCase() === "evan@doublervideo.com" &&
       password.toLowerCase() === "usaa1234"
     ) {
+      props.userLogin(2);
       history.push("/admin");
     } else loginFailed = "Incorrect email or password.";
   };
@@ -141,9 +145,6 @@ export default function Login() {
               Sign In
             </Button>
             <Grid container>
-              {/* <Grid item xs>
-                <Link variant="body2">Forgot password?</Link>
-              </Grid> */}
               <Grid item>
                 <NavLink to="/register">
                   {"Don't have an account? Sign Up"}
@@ -158,4 +159,14 @@ export default function Login() {
       </Grid>
     </Grid>
   );
-}
+};
+
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  };
+};
+
+export default connect(mapStateToProps, {
+  userLogin
+})(Login);

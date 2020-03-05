@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import {
   Grid,
   Paper,
@@ -9,26 +8,9 @@ import {
 } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
-
-import {
-  editVideo,
-  removeVideo,
-  selectVideo
-} from "../../../store/videos/actions";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 const VideoItem = props => {
-  function deleteButtonClick(video) {
-    var r = window.confirm(
-      `Are you sure you want to delete ${props.video.title}?`
-    );
-    if (r === true) {
-      console.log(props.video.id);
-      props.removeVideo(props.video.id);
-    }
-  }
-
   return (
     <Grid item xs={12}>
       <Paper
@@ -49,22 +31,15 @@ const VideoItem = props => {
           aria-label="text primary button group"
           style={{ float: "right" }}
         >
-          <NavLink to="/admin/videos/form/edit">
-            <Button onClick={() => props.selectVideo(props.video)}>
-              <EditIcon />
+          <NavLink to="/videos/admin/form/edit">
+            <Button onClick={() => props.addToCart(props.video)}>
+              <AddShoppingCartIcon />
             </Button>
           </NavLink>
-          <Button onClick={() => deleteButtonClick(props.video)}>
-            <DeleteIcon />
-          </Button>
         </ButtonGroup>
       </Paper>
     </Grid>
   );
 };
 
-export default connect(null, {
-  removeVideo,
-  editVideo,
-  selectVideo
-})(VideoItem);
+export default VideoItem;

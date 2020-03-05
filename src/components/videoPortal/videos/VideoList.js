@@ -13,9 +13,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const VideoList = ({ videos }) => {
+const VideoList = props => {
   const classes = useStyles();
-  const listOfVideos = videos.all.map(video => (
+
+  // const user = props.users.all.filter(user => user.id === Number(id));
+
+  // console.log("list props.user", props.user);
+  // let videos = props.user ? props.user[0].videos : []
+
+  let listOfVideos = props.videos.all.map(video => (
     <VideoCard key={video.id} video={video} />
   ));
 
@@ -28,7 +34,8 @@ const VideoList = ({ videos }) => {
 
 const mapStateToProps = state => {
   return {
-    videos: state.videos
+    videos: state.videos,
+    users: state.users
   };
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { selectVideo } from "../../store/videos/actions";
+import { selectVideo } from "../../../store/videos/actions";
 
 import { Paper, Typography, Container, Fab } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";

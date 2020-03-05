@@ -1,42 +1,42 @@
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import DashboardIcon from "@material-ui/icons/Dashboard";
+import VideocamIcon from "@material-ui/icons/Videocam";
 import PeopleIcon from "@material-ui/icons/People";
-import YouTubeIcon from "@material-ui/icons/YouTube";
+import ShopIcon from "@material-ui/icons/Shop";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export const mainListItems = (
+export const sideNavItems = (
   <div>
-    <NavLink to="/admin" style={{ textDecoration: "none", color: "black" }}>
+    <NavLink to="/videos/1" style={{ textDecoration: "none", color: "black" }}>
       <ListItem button>
         <ListItemIcon>
-          <DashboardIcon />
+          <VideocamIcon />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" />
+        <ListItemText primary="Your Videos" />
       </ListItem>
     </NavLink>
     <NavLink
-      to="/videos/admin"
+      to="/videos/store"
       style={{ textDecoration: "none", color: "black" }}
     >
       <ListItem button>
         <ListItemIcon>
-          <YouTubeIcon />
+          <ShopIcon />
         </ListItemIcon>
-        <ListItemText primary="Videos" />
+        <ListItemText primary="Browse Videos" />
       </ListItem>
     </NavLink>
     <NavLink
-      to="/users/admin"
+      to="/videos/settings"
       style={{ textDecoration: "none", color: "black" }}
     >
       <ListItem button>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <ListItemText primary="Customers" />
+        <ListItemText primary="Account Settings" />
       </ListItem>
     </NavLink>
   </div>

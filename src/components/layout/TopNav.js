@@ -21,8 +21,8 @@ const TopNav = props => {
                 style={{
                   width: "180px",
                   padding: "5px",
-                  marginLeft: "10px",
-                  marginRight: "10px"
+                  marginLeft: "5px",
+                  marginRight: "15px"
                 }}
               />
             </NavLink>

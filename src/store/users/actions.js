@@ -91,3 +91,20 @@ export const selectUser = user => dispatch => {
     });
   }
 };
+
+export const userLogin = user => dispatch => {
+  dispatch({
+    type: types.USER_LOGIN_PENDING
+  });
+  try {
+    dispatch({
+      type: types.USER_LOGIN_SUCCESS,
+      payload: user
+    });
+  } catch (err) {
+    dispatch({
+      type: types.USER_LOGIN_FAILED,
+      payload: err
+    });
+  }
+};

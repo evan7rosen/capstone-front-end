@@ -126,7 +126,7 @@ const VideoAdmin = props => {
                 }}
               >
                 <NavLink
-                  to="/videos/admin/form/new"
+                  to="/admin/videos/form/new"
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   <Button

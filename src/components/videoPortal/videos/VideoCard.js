@@ -4,12 +4,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
-import { selectVideo } from "../../store/videos/actions";
+import { selectVideo } from "../../../store/videos/actions";
 import GridListTile from "@material-ui/core/GridListTile";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 400
+    maxWidth: 350
   }
 }));
 

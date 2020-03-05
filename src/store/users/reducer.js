@@ -3,6 +3,7 @@ import * as types from "./constants";
 const initialState = {
   all: [],
   selectedUser: {},
+  loggedInUser: {},
   err: {}
 };
 
@@ -13,6 +14,7 @@ export default (state = initialState, action) => {
     case types.REMOVE_USER_PENDING:
     case types.EDIT_USER_PENDING:
     case types.SELECT_USER_PENDING:
+    case types.USER_LOGIN_PENDING:
       return state;
 
     case types.FETCH_ALL_USERS_FAILED:
@@ -20,6 +22,7 @@ export default (state = initialState, action) => {
     case types.REMOVE_USER_FAILED:
     case types.EDIT_USER_FAILED:
     case types.SELECT_USER_FAILED:
+    case types.USER_LOGIN_FAILED:
       return {
         ...state,
         err: action.payload
@@ -56,6 +59,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selectedUser: action.payload
+      };
+
+    case types.USER_LOGIN_SUCCESS:
+      return {
+        ...state,
+        loggedInUser: action.payload
       };
 
     default:

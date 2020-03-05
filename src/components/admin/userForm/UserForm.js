@@ -12,7 +12,7 @@ import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import FormPage from "./FormPage";
 import Review from "./Review";
-import SideNav from "../reusable/SideNav";
+import SideNav from "../layout/SideNav";
 import { addUser, editUser, selectUser } from "../../../store/users/actions";
 import { useLocation } from "react-router-dom";
 

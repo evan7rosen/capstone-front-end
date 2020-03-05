@@ -1,30 +1,14 @@
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import React from "react";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import Chart from "./Chart";
-import Deposits from "./Deposits";
-import Orders from "./Orders";
-import SideNav from "../layout/SideNav";
-import Link from "@material-ui/core/Link";
+import { makeStyles } from "@material-ui/core/styles";
+import { useLocation } from "react-router-dom";
+import { Grid, Box, Container } from "@material-ui/core";
+import { connect } from "react-redux";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import SideNav from "./layout/SideNav";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Double R Video Productions
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import VideoList from "./videos/VideoList";
+import VideoDetail from "./videos/VideoDetail";
+import VideoStore from "./shopping/VideoStore";
 
 const drawerWidth = 200;
 
@@ -107,10 +91,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dashboard() {
+const VideoPortal = props => {
   const classes = useStyles();
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  let location = useLocation();
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -119,31 +102,33 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
 
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid>
+          <Grid>
+            <Box>
+              {props.videos.selectedVideo.hasOwnProperty("id") ? (
+                <VideoDetail />
+              ) : (
+                ""
+              )}
+            </Box>
+            <Box my={2}>
+              {location.pathname === "/videos/store" ? (
+                <VideoStore />
+              ) : (
+                <VideoList />
+              )}
+            </Box>
           </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
         </Container>
       </main>
     </div>
   );
-}
+};
+
+const mapStateToProps = state => {
+  return {
+    users: state.users,
+    videos: state.videos
+  };
+};
+
+export default connect(mapStateToProps)(VideoPortal);

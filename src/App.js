@@ -9,7 +9,8 @@ import { fetchAllVideos } from "./store/videos/actions";
 import TopNav from "./components/layout/TopNav";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import Video from "./components/video/VideoPortal";
+import Video from "./components/videoPortal/VideoPortal";
+import VideoStore from "./components/videoPortal/shopping/VideoStore";
 import Admin from "./components/admin/dashboard/Dashboard";
 import UserAdmin from "./components/admin/userAdmin/UserAdmin";
 import VideoAdmin from "./components/admin/videoAdmin/VideoAdmin";
@@ -31,12 +32,12 @@ const App = props => {
         <Route exact path="/" component={Homepage} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route exact path="/videos" component={Video} />
+        <Route path="/videos/:id" component={Video} />
         <Route exact path="/admin" component={Admin} />
-        <Route exact path="/users/admin" component={UserAdmin} />
-        <Route exact path="/videos/admin" component={VideoAdmin} />
-        <Route path="/users/admin/form" component={UserForm} />
-        <Route path="/videos/admin/form" component={VideoForm} />
+        <Route exact path="/admin/users" component={UserAdmin} />
+        <Route exact path="/admin/videos" component={VideoAdmin} />
+        <Route path="/admin/users/form" component={UserForm} />
+        <Route path="/admin/videos/form" component={VideoForm} />
       </Switch>
     </Router>
   );

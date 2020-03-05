@@ -133,7 +133,7 @@ const UserAdmin = props => {
                 }}
               >
                 <NavLink
-                  to="/users/admin/form/new"
+                  to="/admin/users/form/new"
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   <Button
