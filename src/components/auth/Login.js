@@ -79,13 +79,15 @@ const Login = props => {
       email.toLowerCase() === "joe.robles@usaa.com" &&
       password.toLowerCase() === "usaa1234"
     ) {
-      props.userLogin(1);
+      const logInUser = props.users.all.filter(user => user.id === 1)[0];
+      props.userLogin(logInUser);
       history.push("/videos/1");
     } else if (
       email.toLowerCase() === "evan@doublervideo.com" &&
       password.toLowerCase() === "usaa1234"
     ) {
-      props.userLogin(2);
+      const logInUser = props.users.all.filter(user => user.id === 2)[0];
+      props.userLogin(logInUser);
       history.push("/admin");
     } else loginFailed = "Incorrect email or password.";
   };
