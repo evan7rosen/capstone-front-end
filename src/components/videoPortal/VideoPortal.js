@@ -100,24 +100,25 @@ const VideoPortal = props => {
       <SideNav />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-
         <Container maxWidth="lg" className={classes.container}>
-          <Grid>
-            <Box>
-              {props.videos.selectedVideo.hasOwnProperty("id") ? (
-                <VideoDetail />
-              ) : (
-                ""
-              )}
-            </Box>
-            <Box my={2}>
-              {location.pathname === "/videos/store" ? (
-                <VideoStore />
-              ) : (
+          {location.pathname === "/videos/store" ? (
+            <Grid>
+              <VideoStore />
+            </Grid>
+          ) : (
+            <Grid>
+              <Box>
+                {props.videos.selectedVideo.hasOwnProperty("id") ? (
+                  <VideoDetail />
+                ) : (
+                  ""
+                )}
+              </Box>
+              <Box my={2}>
                 <VideoList />
-              )}
-            </Box>
-          </Grid>
+              </Box>
+            </Grid>
+          )}
         </Container>
       </main>
     </div>

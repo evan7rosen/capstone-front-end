@@ -2,7 +2,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import VideocamIcon from "@material-ui/icons/Videocam";
-import PeopleIcon from "@material-ui/icons/People";
+// import PeopleIcon from "@material-ui/icons/People";
 import ShopIcon from "@material-ui/icons/Shop";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -28,7 +28,7 @@ export const sideNavItems = (
         <ListItemText primary="Browse Videos" />
       </ListItem>
     </NavLink>
-    <NavLink
+    {/* <NavLink
       to="/videos/settings"
       style={{ textDecoration: "none", color: "black" }}
     >
@@ -38,6 +38,6 @@ export const sideNavItems = (
         </ListItemIcon>
         <ListItemText primary="Account Settings" />
       </ListItem>
-    </NavLink>
+    </NavLink> */}
   </div>
 );

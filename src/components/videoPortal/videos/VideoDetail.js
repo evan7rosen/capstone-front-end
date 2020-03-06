@@ -16,7 +16,7 @@ const VideoDetail = props => {
         style={{ display: "flex", align: "right" }}
         color="secondary"
         aria-label="close"
-        // onClick={props.selectVideo({})}
+        onClick={() => props.selectVideo({})}
       >
         <CloseIcon />
       </Fab>

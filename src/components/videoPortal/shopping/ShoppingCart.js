@@ -1,10 +1,16 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Grid from "@material-ui/core/Grid";
+import {
+  Box,
+  Grid,
+  Paper,
+  Typography,
+  Button,
+  List,
+  ListItem,
+  ListItemText
+} from "@material-ui/core";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const useStyles = makeStyles(theme => ({
   listItem: {
@@ -18,54 +24,59 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function ShoppingCart() {
+const ShoppingCart = props => {
   const classes = useStyles();
+
+  const checkout = () => {
+    let r = window.confirm("Are you really going to pay $40 for this crap?");
+    if (r === true) {
+      props.clearCart();
+    }
+  };
 
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Shopping Cart
-      </Typography>
-      <List disablePadding>
-        {/* {products.map(product => (
-          <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
-          </ListItem>
-        ))}
-        <ListItem className={classes.listItem}>
-          <ListItemText primary="Total" />
-          <Typography variant="subtitle1" className={classes.total}>
-            $34.06
-          </Typography>
-        </ListItem> */}
-      </List>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom className={classes.title}>
-            Shipping
-          </Typography>
-          {/* <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(", ")}</Typography> */}
-        </Grid>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom className={classes.title}>
-            Payment details
-          </Typography>
-          {/* <Grid container>
-            {payments.map(payment => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
-          </Grid> */}
-        </Grid>
+      <Grid item xs={12}>
+        <Paper>
+          <Box p={1.5}>
+            <Typography variant="h5" gutterBottom align="center">
+              Shopping Cart
+            </Typography>
+            {!props.cart[0] ? (
+              "Your cart is empty. Buy some videos!"
+            ) : (
+              <List>
+                {props.cart.map(video => (
+                  <ListItem className={classes.listItem} key={video.id}>
+                    <ListItemText
+                      primary={video.title}
+                      secondary={video.date}
+                    />
+                    <Typography variant="body2">${video.price}.00</Typography>
+                  </ListItem>
+                ))}
+                <ListItem className={classes.listItem}>
+                  <ListItemText primary="Total" />
+                  <Typography variant="subtitle1" className={classes.total}>
+                    ${props.cart.length * 40}.00
+                  </Typography>
+                </ListItem>
+                <Button
+                  onClick={() => checkout()}
+                  fullWidth
+                  variant="contained"
+                  color="default"
+                  startIcon={<ShoppingCartIcon />}
+                >
+                  Checkout
+                </Button>
+              </List>
+            )}
+          </Box>
+        </Paper>
       </Grid>
     </React.Fragment>
   );
-}
+};
+
+export default ShoppingCart;

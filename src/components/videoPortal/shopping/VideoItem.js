@@ -1,21 +1,12 @@
 import React from "react";
-import {
-  Grid,
-  Paper,
-  Typography,
-  Button,
-  ButtonGroup
-} from "@material-ui/core";
-import { NavLink } from "react-router-dom";
+import { Grid, Box, Typography, Button } from "@material-ui/core";
 
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 const VideoItem = props => {
   return (
     <Grid item xs={12}>
-      <Paper
-        style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-      >
+      <Box style={{ display: "flex", alignItems: "center", padding: "10px" }}>
         <img
           style={{ marginRight: "20px", height: "100px" }}
           alt="thumbnail"
@@ -25,19 +16,18 @@ const VideoItem = props => {
           <b>{props.video.title}</b>
           <p> {props.video.date} </p>
         </Typography>
-        <ButtonGroup
-          variant="text"
-          color="primary"
-          aria-label="text primary button group"
-          style={{ float: "right" }}
+        <Typography variant="h6" style={{ marginRight: "25px" }}>
+          ${props.video.price}.00
+        </Typography>
+        <Button
+          onClick={() => props.addToCart(props.video)}
+          variant="contained"
+          color="default"
+          startIcon={<AddShoppingCartIcon />}
         >
-          <NavLink to="/videos/admin/form/edit">
-            <Button onClick={() => props.addToCart(props.video)}>
-              <AddShoppingCartIcon />
-            </Button>
-          </NavLink>
-        </ButtonGroup>
-      </Paper>
+          Add to Cart
+        </Button>
+      </Box>
     </Grid>
   );
 };

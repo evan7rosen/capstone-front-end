@@ -10,7 +10,6 @@ import TopNav from "./components/layout/TopNav";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Video from "./components/videoPortal/VideoPortal";
-import VideoStore from "./components/videoPortal/shopping/VideoStore";
 import Admin from "./components/admin/dashboard/Dashboard";
 import UserAdmin from "./components/admin/userAdmin/UserAdmin";
 import VideoAdmin from "./components/admin/videoAdmin/VideoAdmin";
